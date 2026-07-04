@@ -8,6 +8,12 @@
 | [zzan-frontend](https://github.com/busicoder/bokhackaton_frontend) | [zzan-backend](https://github.com/yxzkng/zzan) | |
 <br>
 
+## BE 없이 동작시키는 법
+1. '.env'에 VITE_MOCK_DATA=true 입력
+2. 각 컴포넌트들 상위에 존재하는 useEffect 속 userId 확인 코드 주석처리
+3. 구동
+4. 로그인창 우회하여 주소창에 직접 url/reserve, url/mypage 입력
+
 ---
 
 # 1. 프로젝트 목적
