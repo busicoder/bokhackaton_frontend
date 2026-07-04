@@ -127,27 +127,12 @@ export const mockTimeSlotResponse = {
         available: true,
       },
       {
-        startTime: "17:30",
-        remainingSeats: 86,
-        available: true,
-      },
-      {
         startTime: "18:00",
         remainingSeats: 40,
         available: true,
       },
       {
-        startTime: "18:30",
-        remainingSeats: 86,
-        available: true,
-      },
-      {
         startTime: "19:00",
-        remainingSeats: 0,
-        available: false,
-      },
-      {
-        startTime: "19:30",
         remainingSeats: 0,
         available: false,
       },
@@ -157,17 +142,7 @@ export const mockTimeSlotResponse = {
         available: true,
       },
       {
-        startTime: "20:30",
-        remainingSeats: 86,
-        available: true,
-      },
-      {
         startTime: "21:00",
-        remainingSeats: 86,
-        available: true,
-      },
-      {
-        startTime: "21:30",
         remainingSeats: 86,
         available: true,
       },
@@ -175,11 +150,6 @@ export const mockTimeSlotResponse = {
         startTime: "22:00",
         remainingSeats: 0,
         available: false,
-      },
-      {
-        startTime: "22:30",
-        remainingSeats: 72,
-        available: true,
       },
       {
         startTime: "23:00",

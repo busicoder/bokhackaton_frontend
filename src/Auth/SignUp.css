@@ -46,12 +46,14 @@
 .signup-content {
   flex: 1;
   padding: var(--space-8) var(--space-6) 0;
+  background-color: var(--color-background);
 }
 
 .signup-fields {
   display: flex;
   flex-direction: column;
   gap: 28px;
+  
 }
 
 .signup-field {
@@ -84,7 +86,7 @@
   padding: 0 var(--space-4);
   border: none;
   border-radius: var(--radius-large);
-  background-color: var(--color-input);
+  background-color: var(--color-surface);
   font-size: var(--font-size-input);
   color: var(--color-text);
   box-sizing: border-box;
@@ -109,7 +111,7 @@
   height: 44px;
   border: none;
   border-radius: var(--radius-round);
-  background-color: var(--color-input);
+  background-color: var(--color-surface);
   color: var(--color-text-muted);
   font-size: var(--font-size-caption);
   font-weight: 500;
@@ -125,7 +127,7 @@
 .signup-footer {
   padding: var(--space-6);
   padding-bottom: calc(var(--space-8) + 8px);
-  background-color: var(--color-surface);
+  background-color: var(--color-background);
 }
 
 .signup-submit-button {

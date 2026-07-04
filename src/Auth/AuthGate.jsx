@@ -67,6 +67,12 @@ export default function AuthGate() {
                 throw new Error(result.message || "로그인에 실패했습니다.");
             }
 
+            // 로그인 정보 저장
+            localStorage.setItem(
+                "user",
+                JSON.stringify(result.data)
+            );
+
             const role = result.data?.role;
 
             if (role === "STUDENT") {

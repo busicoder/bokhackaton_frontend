@@ -1,0 +1,88 @@
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--space-5);
+
+  background-color: rgb(31 35 41 / 48%);
+  backdrop-filter: blur(2px);
+
+  box-sizing: border-box;
+}
+
+.confirm-modal {
+  width: 100%;
+  max-width: calc(var(--mobile-width) - (var(--space-5) * 2));
+
+  padding: var(--space-7);
+
+  background-color: var(--color-surface);
+  border-radius: calc(var(--radius-modal) + var(--space-2));
+
+  box-shadow: var(--shadow-modal);
+  box-sizing: border-box;
+}
+
+.confirm-title {
+  margin: 0;
+
+  font-family: var(--font-family);
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  line-height: calc(var(--space-8) + var(--space-1));
+
+  color: var(--color-text);
+}
+
+.confirm-message {
+  margin:
+    var(--space-6)
+    0
+    var(--space-7);
+
+  font-family: var(--font-family);
+  font-size: var(--font-size-title-small);
+  font-weight: 500;
+  line-height: calc(var(--space-6) + var(--space-1));
+
+  color: var(--color-text-muted);
+}
+
+.confirm-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.confirm-button {
+  flex: 1;
+  height: calc(var(--button-height) + var(--space-4));
+
+  border-radius: calc(var(--radius-large) + var(--space-1));
+
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size-input) + 3px);
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.confirm-button.cancel {
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.confirm-button.confirm {
+  border: none;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.confirm-button:active {
+  transform: scale(0.98);
+}

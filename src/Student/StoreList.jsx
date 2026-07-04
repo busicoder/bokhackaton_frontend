@@ -8,15 +8,12 @@ import "./StoreList.css";
 import { fetchStores } from "../Util/GetStores";
 import Store1 from "../assets/BeerIcon.png";
 import { useNavigate } from "react-router-dom";
-
+import { formatDate } from "../Util/formatDate";
 
 const STORE_IMAGES = [
   "🍺", "🔥", "🍻", "🍶", "🍾", "🍸"
 ];
 
-export function formatDate(date) {
-  return date.toISOString().split("T")[0];
-}
 
 export default function StoreListPage() {
   const [keyword, setKeyword] = useState("");
@@ -45,7 +42,7 @@ export default function StoreListPage() {
         formattedDate,
         headcount
       );
-      console.log(data);
+      // console.log(data);
 
       setStores(data.stores);
     } catch (error) {

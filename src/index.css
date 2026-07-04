@@ -47,3 +47,7 @@
   --shadow-modal: 0 16px 40px rgb(0 0 0 / 20%);
   --focus-ring: 0 0 0 3px rgb(255 107 92 / 15%);
 }
+body{
+  background-color: var(--color-background);
+  margin:0px;
+}

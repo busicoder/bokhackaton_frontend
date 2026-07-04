@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import './Alert.css';
 
-export default function AlertModal({ message, onClose }) {
+export default function AlertModal({ message, onClose, title="알림" }) {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -33,7 +33,7 @@ export default function AlertModal({ message, onClose }) {
         onClick={(event) => event.stopPropagation()}
       >
         <h2 className="alert-title" id="alert-title">
-          알림
+          {title}
         </h2>
 
         <p className="alert-message" id="alert-message">
@@ -46,7 +46,7 @@ export default function AlertModal({ message, onClose }) {
           onClick={onClose}
           autoFocus
         >
-          확인
+          {!title?"확인":"예약 목록으로 이동"}
         </button>
       </section>
     </div>
