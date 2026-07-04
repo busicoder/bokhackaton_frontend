@@ -4,6 +4,7 @@ import ReservationCard from "./ReservationCard";
 import AlertModal from "../Page/Alert";
 import { fetchMyReservations } from "../Util/GetMyReservation";
 import { useNavigate } from "react-router-dom";
+import { LogOut } from "../Util/LogOut";
 
 
 export default function MyPage() {
@@ -51,11 +52,32 @@ export default function MyPage() {
         <main className="mypage">
             <section className="mypage-profile">
                 <div className="mypage-user">
-                    <div className="mypage-avatar">👤</div>
+                    <div className="mypage-user-left">
+                        <div className="mypage-avatar">👤</div>
 
-                    <div>
-                        <strong>{userId}님</strong>
+                        <div>
+                            <strong>{userId}님</strong>
+                        </div>
                     </div>
+
+                    <button
+                        className="mypage-logout-button"
+                        onClick={async () => {
+                            try {
+                                await LogOut();
+
+                                localStorage.removeItem("user");
+
+                                navigate("/", { replace: true });
+                            } catch (error) {
+                                setAlertMessage(
+                                    error.message || "로그아웃에 실패했습니다."
+                                );
+                            }
+                        }}
+                    >
+                        로그아웃
+                    </button>
                 </div>
 
                 <div className="mypage-stats">
