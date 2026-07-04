@@ -1,0 +1,31 @@
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 430px;
+  height: var(--footer-height);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  border-top: 1px solid var(--border-color);
+  background-color: var(--background-color);
+
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.footer-item {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--normal-color);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer-item.active {
+  color: var(--highlight-color);
+}
