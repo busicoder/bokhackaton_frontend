@@ -2,8 +2,11 @@
 
 > 대학가 술집 예약을 위한 **세션 기반 실시간 예약 플랫폼**
 
-ZZan은 학생이 날짜와 인원을 기준으로 예약 가능한 술집을 탐색하고,  
-시간 단위 슬롯을 선택해 예약할 수 있는 모바일 퍼스트 웹 애플리케이션입니다.
+| **Frontend** | **Backend** | **기획&디자인** |
+| :---: | :---: | :---: |
+| [@busicoder](https://github.com/busicoder) | [@yxzkng](https://github.com/yxzkng), [@minjaejyo](https://github.com/minjaejyo) | 정우정 |
+| [zzan-frontend](https://github.com/busicoder/bokhackaton_frontend) | [zzan-backend](https://github.com/yxzkng/zzan) | |
+<br>
 
 ---
 
@@ -137,6 +140,7 @@ src/
 /mypage           → My Reservation List
 ```
 
+## BE Https 미지원 이슈
 SPA refresh issue solved with:
 
 ```json
@@ -254,7 +258,7 @@ mouseup → drag end
 17:00 → 18:00 → 19:00
 가능
 
-17:00 → 19:00
+17:00 → 18:00 /              / 19:00 → 20:00
 불가
 ```
 
@@ -461,3 +465,6 @@ ConfirmModal
 - 배포 Rewrite 구조
 
 를 중점적으로 설계했습니다.
+
+## BE
+https://github.com/yxzkng/zzan
