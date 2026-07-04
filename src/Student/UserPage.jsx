@@ -3,16 +3,24 @@ import "./UserPage.css";
 import ReservationCard from "./ReservationCard";
 import AlertModal from "../Page/Alert";
 import { fetchMyReservations } from "../Util/GetMyReservation";
+import { useNavigate } from "react-router-dom";
 
 
 export default function MyPage() {
     const [reservations, setReservations] = useState([]);
     const [alertMessage, setAlertMessage] = useState("");
+    const navigate = useNavigate();
     const user = JSON.parse(
         localStorage.getItem("user")
     );
 
-    const userId = user?.id;
+
+    const userId = user?.loginId;
+    useEffect(() => {
+        if (!userId) {
+            navigate("/", { replace: true });
+        }
+    }, [userId, navigate]);
     useEffect(() => {
         const loadReservations = async () => {
             try {

@@ -1,25 +1,27 @@
 import { useState } from "react";
 import ConfirmModal from "../Page/ConfirmMordal";
-import { cancelReservation } from "../Util/CancelReservation";
 import AlertModal from "../Page/Alert";
+import { cancelReservation } from "../Util/CancelReservation";
+
 export default function ReservationCard({ reservation }) {
     const [showConfirm, setShowConfirm] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
+    const [alertTitle, setAlertTitle] = useState("");
+
     const handleCancelReservation = async () => {
         try {
             await cancelReservation(
                 reservation.reservationId
             );
 
-            onCanceled?.(reservation.reservationId);
-
-            // setAlertTitle("예약 취소 완료");
+            setAlertTitle("예약 취소 완료");
             setAlertMessage("예약이 취소되었습니다.");
         } catch (error) {
-            // setAlertTitle("예약 취소 실패");
+            setAlertTitle("예약 취소 실패");
             setAlertMessage(error.message);
         }
     };
+
     return (
         <>
             <div className="reservation-card">
@@ -34,29 +36,34 @@ export default function ReservationCard({ reservation }) {
                     </div>
 
                     <div
-                        className={`reservation-status ${reservation.status.toLowerCase()
-                            }`}
+                        className={`reservation-status ${reservation.status.toLowerCase()}`}
                     >
                         {reservation.status === "CONFIRMED"
                             ? "확정됨"
-                            : "요청됨"}
+                            : reservation.status === "REQUESTED"
+                              ? "요청됨"
+                              : "취소됨"}
                     </div>
                 </div>
 
                 <div className="reservation-info">
-                    <span>🕒 {reservation.time}</span>
+                    <span>
+                        🕒 {reservation.startTime} ~ {reservation.endTime}
+                    </span>
                     <span>👤 {reservation.headcount}명</span>
                 </div>
 
+                {/* 요청 상태일 때만 취소 버튼 */}
                 {reservation.status === "REQUESTED" && (
                     <button
                         className="reservation-cancel"
                         onClick={() => setShowConfirm(true)}
                     >
-                        취소
+                        취소하기
                     </button>
                 )}
             </div>
+
             {showConfirm && (
                 <ConfirmModal
                     title="예약을 취소하시겠어요?"
@@ -68,12 +75,15 @@ export default function ReservationCard({ reservation }) {
                     }}
                 />
             )}
+
             <AlertModal
+                title={alertTitle}
                 message={alertMessage}
                 onClose={() => {
+                    setAlertTitle("");
                     setAlertMessage("");
                 }}
-            /> 
+            />
         </>
     );
 }

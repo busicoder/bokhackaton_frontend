@@ -16,12 +16,27 @@ const STORE_IMAGES = [
 
 
 export default function StoreListPage() {
+  const navigate = useNavigate();
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
+
+
+  const userId = user?.loginId;
+  useEffect(() => {
+    if (!userId) {
+      navigate("/", { replace: true });
+    }
+  }, [userId, navigate]);
   const [keyword, setKeyword] = useState("");
-  const [date, setDate] = useState(new Date());
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const [date, setDate] = useState(tomorrow);
   const [headcount, setHeadcount] = useState(4);//기본 인원수 4
   const [stores, setStores] = useState([]);
   const [alertMessage, setAlertMessage] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const getStoreThumbnail = (storeId) => {
     return STORE_IMAGES[
@@ -85,7 +100,7 @@ export default function StoreListPage() {
               <DatePicker
                 selected={date}
                 onChange={(selectedDate) => setDate(selectedDate)}
-                minDate={new Date()}
+                minDate={tomorrow}
                 dateFormat="yyyy.MM.dd"
                 className="reserve-date-picker"
               />
@@ -150,7 +165,7 @@ export default function StoreListPage() {
                 key={store.id}
                 className="reserve-store-card"
                 onClick={() => {
-                  const formattedDate=formatDate(date);
+                  const formattedDate = formatDate(date);
                   navigate(`/reserve/${store.id}`, {
                     state: {
                       date: formattedDate,

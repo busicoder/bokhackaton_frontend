@@ -13,6 +13,17 @@ import { createReservation } from "../Util/PostResevation";
 
 export default function Schedule() {
     const navigate = useNavigate();
+    const user = JSON.parse(
+        localStorage.getItem("user")
+    );
+
+
+    const userId = user?.loginId;
+    useEffect(() => {
+        if (!userId) {
+            navigate("/", { replace: true });
+        }
+    }, [userId, navigate]);
     const { storeID } = useParams();
     const location = useLocation();
     const { date, headcount } = location.state || {};
@@ -33,7 +44,18 @@ export default function Schedule() {
             const sortedSlots = [...selectedSlots].sort();
 
             const startTime = sortedSlots[0];
-            const endTime = sortedSlots[sortedSlots.length - 1];
+            const endTime = (() => {
+                const [hour, minute] =
+                    sortedSlots[sortedSlots.length - 1]
+                        .split(":")
+                        .map(Number);
+
+                const nextHour = hour + 1;
+
+                return `${String(nextHour).padStart(2, "0")}:${String(
+                    minute
+                ).padStart(2, "0")}`;
+            })();
 
             const result = await createReservation({
                 storeId: Number(storeID),
@@ -310,15 +332,17 @@ export default function Schedule() {
 
             <AlertModal
                 message={alertMessage}
+                title={title}
                 onClose={() => {
+                    const isSuccess = title === "예약요청이 전달되었어요!";
+
                     setAlertMessage("");
-                    if(!title){
-                        setTitle("");
+                    setTitle("");
+
+                    if (isSuccess) {
                         navigate("/mypage");
                     }
-                    setTitle("");
                 }}
-                title={title}
             />
         </main>
     );

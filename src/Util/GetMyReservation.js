@@ -1,9 +1,9 @@
 const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 
 export async function fetchMyReservations() {
-  if (import.meta.env.VITE_MOCK_DATA) {
-    return mockReservationResponse.data;
-  }
+  // if (import.meta.env.VITE_MOCK_DATA) {
+  //   return mockReservationResponse.data;
+  // }
 
   const response = await fetch(
     `${API_URL}/api/reservations/me`,

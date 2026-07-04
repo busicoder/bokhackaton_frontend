@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AlertModal from "../Page/Alert";
 import "./AuthGate.css";
-import BeerIcon from "../assets/BeerIcon.png";
+import BeerIcon from "../assets/zzanicon.png";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -16,6 +16,22 @@ export default function AuthGate() {
 
     const [alertMessage, setAlertMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+
+        if (!storedUser) return;
+
+        const user = JSON.parse(storedUser);
+
+        if (user?.role === "STUDENT") {
+            navigate("/reserve", { replace: true });
+            return;
+        }
+
+        if (user?.role === "OWNER") {
+            navigate("/owner", { replace: true });
+        }
+    }, [navigate]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -25,7 +41,7 @@ export default function AuthGate() {
             [name]: value,
         }));
     };
-
+    console.log(API_URL);
     const handleLogin = async (event) => {
         event.preventDefault();
 
@@ -98,7 +114,7 @@ export default function AuthGate() {
     return (
         <main className="auth-page">
             <section className="auth-container">
-                <header className="auth-brand">
+                <div className="auth-brand">
                     <img
                         className="auth-brand-icon"
                         src={BeerIcon}
@@ -110,7 +126,7 @@ export default function AuthGate() {
                     <p className="auth-description">
                         학교 근처 술자리, 손쉽게 예약
                     </p>
-                </header>
+                </div>
 
                 <form className="auth-card" onSubmit={handleLogin}>
                     <div className="auth-fields">

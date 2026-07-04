@@ -51,3 +51,10 @@ body{
   background-color: var(--color-background);
   margin:0px;
 }
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Regular.woff2") format("woff2");
+}
+* {
+  font-family: var(--font-family);
+}

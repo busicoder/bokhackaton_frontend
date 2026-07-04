@@ -1,9 +1,9 @@
 const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 
 export async function fetchStores(date, headcount) {
-  if(import.meta.env.VITE_MOCK_DATA){
-    return mockStoreResponse.data;
-  }
+  // if(import.meta.env.VITE_MOCK_DATA){
+  //   return mockStoreResponse.data;
+  // }
   const query = new URLSearchParams({
     date,
     headcount,
@@ -37,9 +37,9 @@ export async function fetchTimeSlots(
     date,
     headcount,
   });
-  if(import.meta.env.VITE_MOCK_DATA){
-    return mockTimeSlotResponse.data;
-  }
+  // if(import.meta.env.VITE_MOCK_DATA){
+  //   return mockTimeSlotResponse.data;
+  // }
 
   const response = await fetch(
     `${API_URL}/api/stores/${storeId}/timeslots?${query.toString()}`,

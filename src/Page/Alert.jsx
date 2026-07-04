@@ -46,7 +46,7 @@ export default function AlertModal({ message, onClose, title="알림" }) {
           onClick={onClose}
           autoFocus
         >
-          {!title?"확인":"예약 목록으로 이동"}
+          확인
         </button>
       </section>
     </div>

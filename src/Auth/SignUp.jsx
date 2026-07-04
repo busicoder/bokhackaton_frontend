@@ -247,7 +247,7 @@ export default function SignUp() {
                 name="phoneNumber"
                 value={form.phoneNumber}
                 onChange={handleChange}
-                placeholder="010-0000-0000"
+                placeholder="01012345678"
                 autoComplete="tel"
               />
             </div>
