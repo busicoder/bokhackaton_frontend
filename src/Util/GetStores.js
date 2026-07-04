@@ -28,6 +28,38 @@ export async function fetchStores(date, headcount) {
   return result.data;
 }
 
+export async function fetchTimeSlots(
+  storeId,
+  date,
+  headcount
+) {
+  const query = new URLSearchParams({
+    date,
+    headcount,
+  });
+  if(import.meta.env.VITE_MOCK_DATA){
+    return mockTimeSlotResponse.data;
+  }
+
+  const response = await fetch(
+    `${API_URL}/api/stores/${storeId}/timeslots?${query.toString()}`,
+    {
+      method: "GET",
+      credentials: "include",
+    }
+  );
+
+  const result = await response.json();
+
+  if (!response.ok || !result.success) {
+    throw new Error(
+      result.message || "예약 현황 조회 실패"
+    );
+  }
+
+  return result.data;
+}
+
 const mockStoreResponse = {
   success: true,
   code: 200,
@@ -78,4 +110,82 @@ const mockStoreResponse = {
       },
     ],
   },
+};
+export const mockTimeSlotResponse = {
+  success: true,
+  code: 200,
+  message: "예약 현황 조회 성공",
+  data: {
+    storeId: 1,
+    storeName: "홍대포차",
+    date: "2026-07-10",
+    slotCapacity: 86,
+    slots: [
+      {
+        startTime: "17:00",
+        remainingSeats: 86,
+        available: true,
+      },
+      {
+        startTime: "17:30",
+        remainingSeats: 86,
+        available: true,
+      },
+      {
+        startTime: "18:00",
+        remainingSeats: 40,
+        available: true,
+      },
+      {
+        startTime: "18:30",
+        remainingSeats: 86,
+        available: true,
+      },
+      {
+        startTime: "19:00",
+        remainingSeats: 0,
+        available: false,
+      },
+      {
+        startTime: "19:30",
+        remainingSeats: 0,
+        available: false,
+      },
+      {
+        startTime: "20:00",
+        remainingSeats: 50,
+        available: true,
+      },
+      {
+        startTime: "20:30",
+        remainingSeats: 86,
+        available: true,
+      },
+      {
+        startTime: "21:00",
+        remainingSeats: 86,
+        available: true,
+      },
+      {
+        startTime: "21:30",
+        remainingSeats: 86,
+        available: true,
+      },
+      {
+        startTime: "22:00",
+        remainingSeats: 0,
+        available: false,
+      },
+      {
+        startTime: "22:30",
+        remainingSeats: 72,
+        available: true,
+      },
+      {
+        startTime: "23:00",
+        remainingSeats: 86,
+        available: true,
+      }
+    ]
+  }
 };

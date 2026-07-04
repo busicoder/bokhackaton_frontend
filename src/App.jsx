@@ -6,6 +6,7 @@ import UserPage from './Student/UserPage'
 import OwnerPage from './Owner/OwnerPage'
 import AuthGate from './Auth/AuthGate'
 import StoreListPage from './Student/StoreList'
+import Schedule from './Student/Schedule'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         {/* student */}
         <Route path="/mypage" element={<Layout content={<UserPage />} />} />
         <Route path="/reserve" element={<Layout content={<StoreListPage />} />} />
+        <Route path="/reserve/:storeID" element={<Layout content={<Schedule />} />} />
 
         {/* owner */}
         <Route path="/owner" element={<Layout content={<OwnerPage />} />} />

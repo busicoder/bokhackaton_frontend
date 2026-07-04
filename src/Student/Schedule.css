@@ -1,0 +1,199 @@
+.schedule-page {
+  display: flex;
+  justify-content: center;
+  min-height: 100dvh;
+  background-color: var(--color-background);
+  font-family: var(--font-family);
+}
+
+.schedule-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--mobile-width);
+  min-height: 100dvh;
+  background-color: var(--color-surface);
+}
+
+.schedule-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+
+  height: var(--header-height);
+  padding: 0 var(--space-5);
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.schedule-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: var(--space-6);
+  height: var(--space-6);
+
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+
+  cursor: pointer;
+}
+
+.schedule-header h1 {
+  margin: 0;
+
+  font-size: var(--font-size-title-small);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.schedule-info {
+  display: flex;
+  gap: var(--space-4);
+
+  padding: var(--space-5);
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.schedule-info div {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  color: var(--color-text);
+  font-size: var(--font-size-body);
+  font-weight: 500;
+}
+
+.schedule-content {
+  flex: 1;
+  padding: var(--space-6) var(--space-5);
+}
+
+.schedule-content h2 {
+  margin: 0;
+
+  font-size: var(--font-size-title-small);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.schedule-content p {
+  margin: var(--space-2) 0 var(--space-6);
+
+  font-size: var(--font-size-body);
+  color: var(--color-text-muted);
+}
+
+.schedule-slot-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.schedule-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.schedule-time {
+  width: 52px;
+
+  font-size: var(--font-size-body);
+  font-weight: 500;
+  color: var(--color-text-muted);
+
+  text-align: right;
+}
+
+.schedule-slot {
+  flex: 1;
+  height: var(--button-height);
+
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--color-border);
+
+  background-color: var(--color-surface);
+
+  font-size: var(--font-size-body);
+  font-weight: 600;
+
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+/* 예약 가능 */
+.schedule-slot.available {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+  color: transparent;
+}
+
+/* 일부 가능 */
+.schedule-slot.partial {
+  background-color: #fff7db;
+  border-color: #f2a100;
+  color: #9a5400;
+}
+
+/* 마감 */
+.schedule-slot.closed {
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
+  color: var(--color-text-muted);
+
+  cursor: not-allowed;
+}
+
+/* 내가 선택 */
+.schedule-slot.selected {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.schedule-legend {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+
+  border-top: 1px solid var(--color-border);
+}
+
+.schedule-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+.schedule-legend-box {
+  width: var(--space-5);
+  height: var(--space-5);
+
+  border-radius: var(--radius-small);
+}
+
+.schedule-legend-box.closed {
+  background-color: #e5e7eb;
+}
+
+.schedule-legend-box.partial {
+  background-color: #fff7db;
+  border: 1px solid #f2a100;
+}
+
+.schedule-legend-box.selected {
+  background-color: var(--color-primary);
+}

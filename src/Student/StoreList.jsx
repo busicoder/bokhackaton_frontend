@@ -6,7 +6,17 @@ import AlertModal from "../Page/Alert";
 import "react-datepicker/dist/react-datepicker.css";
 import "./StoreList.css";
 import { fetchStores } from "../Util/GetStores";
+import Store1 from "../assets/BeerIcon.png";
+import { useNavigate } from "react-router-dom";
 
+
+const STORE_IMAGES = [
+  "🍺", "🔥", "🍻", "🍶", "🍾", "🍸"
+];
+
+export function formatDate(date) {
+  return date.toISOString().split("T")[0];
+}
 
 export default function StoreListPage() {
   const [keyword, setKeyword] = useState("");
@@ -14,6 +24,13 @@ export default function StoreListPage() {
   const [headcount, setHeadcount] = useState(4);//기본 인원수 4
   const [stores, setStores] = useState([]);
   const [alertMessage, setAlertMessage] = useState("");
+  const navigate = useNavigate();
+
+  const getStoreThumbnail = (storeId) => {
+    return STORE_IMAGES[
+      (storeId - 1) % STORE_IMAGES.length
+    ];
+  };
 
   const searchStores = async () => {
     if (!date) {
@@ -135,8 +152,19 @@ export default function StoreListPage() {
               <button
                 key={store.id}
                 className="reserve-store-card"
+                onClick={() => {
+                  const formattedDate=formatDate(date);
+                  navigate(`/reserve/${store.id}`, {
+                    state: {
+                      date: formattedDate,
+                      headcount,
+                    },
+                  });
+                }}
               >
-                <div className="reserve-store-thumbnail" />
+                <div className="reserve-store-thumbnail">
+                  <span>{getStoreThumbnail(store.id)}</span>
+                </div>
 
                 <div className="reserve-store-content">
                   <strong>{store.name}</strong>
